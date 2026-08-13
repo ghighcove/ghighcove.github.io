@@ -205,13 +205,13 @@
 
   <section class="panel" id="dryport">
     <div class="bar">
-      <span class="title">dryport — inland rail-yard container terminal simulation</span>
+      <span class="title">dryport — rail-yard simulation, audited and corrected in the open</span>
       <span class="tag">flagship</span>
     </div>
     <div class="body">
-      <p>A discrete-event simulation (Python/SimPy) of a rail-served container yard, with a live 3D
-      replay viewer (Three.js). I audited my own assumptions partway through the build, and that
-      audit is most of what's worth describing here.</p>
+      <p>A discrete-event simulation (Python/SimPy) of a rail-served container yard, replayed live
+      in 3D (Three.js). Partway through the build, I stopped and checked the simulation's own
+      assumptions against outside data — everything below is what that check turned up.</p>
       <ul class="findings">
         <li><b>Ran a systematic audit of all 57 constants in the simulation</b> against industry
         data (BLS wage data, EPRI equipment studies, PierPASS terminal statistics, federal rail
@@ -235,13 +235,13 @@
 
   <section class="panel" id="gladiator">
     <div class="bar">
-      <span class="title">gladiator-arena — autonomous combat sim + live 3D viewer</span>
+      <span class="title">gladiator-arena — a live viewer that caught a bug in minutes</span>
       <span class="tag">public repo</span>
     </div>
     <div class="body">
-      <p>An autonomous D&amp;D-style combat simulator with a spatial engine (line-of-sight,
-      per-class movement AI, persistent personality traits) and a live 3D viewer built on Three.js.
-      Built and audited in a single session, same day, start to finish.</p>
+      <p>An autonomous D&amp;D-style combat simulator — line-of-sight, per-class movement AI,
+      personality traits that drive behavior — paired with a live 3D viewer built on Three.js.
+      Both were built in a single session, one immediately put to use watching the other.</p>
       <ul class="findings">
         <li><b>The viewer shipped, and a match froze within minutes of watching it run.</b> That
         observation led to a full audit, cross-checked against 5,246 archived matches from the
@@ -273,12 +273,12 @@
         <span class="tag"><span class="status-dot"></span>live</span>
       </div>
       <div class="body">
-        <p>Two small open-source tools, shipped and running in production.</p>
+        <p>Two small tools built to solve a problem I had, then open-sourced.</p>
         <ul class="findings">
           <li><b>yah-mule-agent-pacer</b> — a live terminal dashboard tracking Claude Max quota,
           spend efficiency, and hourly burn patterns.</li>
-          <li><b>claude-md-audit-skill</b> — a Claude Code skill that audits and scores CLAUDE.md
-          project files against quality best practices.</li>
+          <li><b>claude-md-audit-skill</b> — a Claude Code skill that scores CLAUDE.md project
+          files and flags what's weak.</li>
         </ul>
         <div class="links">
           <a href="https://github.com/ghighcove/yah-mule-agent-pacer">yah-mule-agent-pacer</a>
@@ -289,12 +289,13 @@
 
     <section class="panel" id="sports">
       <div class="bar">
-        <span class="title">Forecasting, backtested</span>
+        <span class="title">Sports forecasting — no hindsight allowed</span>
         <span class="tag">public repo</span>
       </div>
       <div class="body">
-        <p>A transparent, auditable Elo-rating forecaster for MLB and NBA. Every prediction in the
-        accuracy ledger was made walk-forward, using only data available before that game.</p>
+        <p>An Elo-rating forecaster for MLB and NBA with one rule that never bends: every
+        prediction in the accuracy ledger used only data available before that game — no
+        adjusting after the fact.</p>
         <div class="metrics">
           <div class="metric"><div class="n">64.5%</div><div class="l">NBA accuracy, all-time</div></div>
           <div class="metric"><div class="n">81.0%</div><div class="l">NBA, last 100 games</div></div>
