@@ -205,29 +205,54 @@
 
   <section class="panel" id="dryport">
     <div class="bar">
-      <span class="title">dryport — rail-yard simulation, audited and corrected in the open</span>
+      <span class="title">dryport — a rail yard, modeled to find what actually works</span>
       <span class="tag">flagship</span>
     </div>
     <div class="body">
       <p>A discrete-event simulation (Python/SimPy) of a rail-served container yard, replayed live
-      in 3D (Three.js). Partway through the build, I stopped and checked the simulation's own
-      assumptions against outside data — everything below is what that check turned up.</p>
+      in 3D (Three.js). The starting question was concrete: when you can't know exactly when a
+      container will leave — only a coarse signal about which group it's in — which stacking
+      policy and yard-management approach actually cuts wasted crane moves? Answering it meant
+      building several candidate policies and testing them against each other under identical,
+      repeated conditions.</p>
+      <p><b>What actually works, discovered by testing it:</b></p>
+      <ul class="findings">
+        <li>The best policy works from a deliberately imprecise estimate of when each container
+        will leave, since no yard has perfect institutional memory — and it nearly halves
+        rehandles against no policy at all (1.474 → 0.765), with the advantage holding up even as
+        that estimate gets noisier.</li>
+        <li>Two intuitively "smarter" ideas made things worse. Matching trains to yard tracks by
+        cargo composition was actively harmful — it broke a load-balancing effect the simplest
+        baseline had been providing by accident. Aiming the crane's idle time at the single
+        most-overdue container backfired the same way: most of those moves chased a container
+        whose predicted pickup time had already passed, one box alone absorbing a fifth of all
+        idle-time work in a single run.</li>
+      </ul>
+      <p><b>What checking the model's own assumptions turned up — an equally useful result:</b></p>
       <ul class="findings">
         <li><b>Ran a systematic audit of all 57 constants in the simulation</b> against industry
         data (BLS wage data, EPRI equipment studies, PierPASS terminal statistics, federal rail
-        regulation). Found six calibration errors of <b>2×–99×</b> in the core assumptions — a
-        trolley speed sourced from the wrong crane type, a demand model built on marine free-time
-        figures misapplied to a rail ramp.</li>
+        regulation). Found six calibration errors of <b>2×–99×</b> — including a crane-speed
+        figure that had confused two physically different machines, corrected against the
+        manufacturer's own technical document.</li>
         <li><b>Retested every published finding that depended on the corrected constants.</b> Two
         changed. One algorithm's "harmful" verdict disappeared once the trains were sized correctly.
         A stacking strategy shown winning "at every noise level" turned out to lose at the noisiest
         end once retested.</li>
-        <li>The corrections sit next to the original numbers in the project's own changelog.</li>
+        <li><b>The 3D replay viewer caught what the summary numbers couldn't.</b> A dedicated
+        check against the simulation's own event log — the same log the viewer renders from —
+        found a bay silently stacked 188 boxes high against a 5-tier physical limit. Every KPI the
+        project tracked looked normal; nothing about it was visible until something had to draw
+        it.</li>
+        <li>A stacking-priority rule in the project's own design document read as plausible and
+        was, in fact, backwards. Built and measured as a control, it scored worse than having no
+        policy at all, on every seed tested.</li>
       </ul>
+      <p>The corrections sit next to the original numbers in the project's own changelog.</p>
       <div class="metrics">
         <div class="metric"><div class="n">57</div><div class="l">constants audited</div></div>
-        <div class="metric"><div class="n">6</div><div class="l">calibration misses found</div></div>
-        <div class="metric"><div class="n">2×<span class="arrow">–</span>99×</div><div class="l">size of the errors</div></div>
+        <div class="metric"><div class="n">~2×</div><div class="l">rehandle reduction, best policy</div></div>
+        <div class="metric"><div class="n">188</div><div class="l">boxes stacked past the 5-tier limit — caught only by the 3D viewer</div></div>
         <div class="metric"><div class="n">2</div><div class="l">published findings reversed on retest</div></div>
       </div>
     </div>
@@ -240,8 +265,9 @@
     </div>
     <div class="body">
       <p>An autonomous D&amp;D-style combat simulator — line-of-sight, per-class movement AI,
-      personality traits that drive behavior — paired with a live 3D viewer built on Three.js.
-      Both were built in a single session, one immediately put to use watching the other.</p>
+      personality traits that drive behavior — paired with a live 3D viewer built the same
+      session. The same lesson from dryport showed up again here: watching a system run finds
+      things that reading its statistics does not.</p>
       <ul class="findings">
         <li><b>The viewer shipped, and a match froze within minutes of watching it run.</b> That
         observation led to a full audit, cross-checked against 5,246 archived matches from the
@@ -293,9 +319,11 @@
         <span class="tag">public repo</span>
       </div>
       <div class="body">
-        <p>An Elo-rating forecaster for MLB and NBA with one rule that never bends: every
-        prediction in the accuracy ledger used only data available before that game — no
-        adjusting after the fact.</p>
+        <p>An Elo-rating forecaster for MLB and NBA, built to answer the same kind of question as
+        dryport in a different domain: not which model sounds right, but which one actually
+        predicts better once it's checked against outcomes it never got to peek at. One rule never
+        bends: every prediction in the accuracy ledger used only data available before that game —
+        no adjusting after the fact.</p>
         <div class="metrics">
           <div class="metric"><div class="n">64.5%</div><div class="l">NBA accuracy, all-time</div></div>
           <div class="metric"><div class="n">81.0%</div><div class="l">NBA, last 100 games</div></div>
@@ -316,9 +344,13 @@
 
   <footer>
     <p><span class="label">Methodology</span></p>
-    <p>Every project above was built collaboratively with Claude Code: spec-and-verify discipline,
-    paired-data audits, non-destructive iteration, and reporting a result honestly when it changes on
-    retest, all of it stated here directly.</p>
+    <p>Every project above was built collaboratively with Claude Code, and the same practice runs
+    through all of them: build something — a simulation, a live 3D view of it, a backtest — that
+    can disagree with an assumption, then run it and report what it says, even when that means
+    reversing a published result. Visual, interactive models turned out to be a scalable,
+    affordable way to do that: cheap to build, able to surface problems a spreadsheet of KPIs
+    won't show — a bay stacked 188 boxes past its physical limit, a match that quietly never ends
+    — and worth building again on whatever comes next.</p>
     <p class="fine">Built and published the same evening it describes. <button class="theme-toggle" id="theme-toggle" type="button">toggle theme</button></p>
   </footer>
 
