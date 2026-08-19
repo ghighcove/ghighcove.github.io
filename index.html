@@ -193,6 +193,7 @@
       <a href="#tools">tools</a>
       <a href="#sports">forecasting</a>
       <a href="#ltui">ltui</a>
+      <a href="#gaming-thesis">gaming</a>
       <a href="https://github.com/ghighcove">github ↗</a>
     </nav>
   </div>
@@ -203,11 +204,11 @@
   <section class="hero">
     <span class="label">Portfolio</span>
     <h1>AI Projects</h1>
-    <p class="deck">Seven projects below — a rail-yard simulation, a combat AI, a doctrine-driven
+    <p class="deck">Eight projects below — a rail-yard simulation, a combat AI, a doctrine-driven
     wargaming system, a continuous 3D garden world, two sports forecasters, an AI reading harness
-    for historical texts, and the tools behind them. Each write-up includes what the check found,
-    including results that got worse. The AI-collaboration methodology is disclosed once, at the
-    bottom of this page.</p>
+    for historical texts, a position piece on where AI takes game design, and the tools behind
+    them. Each write-up includes what the check found, including results that got worse. The
+    AI-collaboration methodology is disclosed once, at the bottom of this page.</p>
 
     <div class="shots">
       <div class="shot-card">
@@ -587,6 +588,134 @@
         <div class="metrics">
           <div class="metric"><div class="n">60</div><div class="l">source corpora, one normalized schema</div></div>
           <div class="metric"><div class="n">101,000+</div><div class="l">passages spanned</div></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="gaming-thesis">
+      <div class="bar">
+        <span class="title">The future of gaming — a fixed world loses to a live one</span>
+        <span class="tag">position piece</span>
+      </div>
+      <div class="body">
+        <p>The claim: a fixed, pre-authored game world — even one as sophisticated as GTA6 —
+        becomes a worse entertainment product than a live, continuously AI-customized alternative
+        on the same hardware class, as AI compute keeps getting cheaper. The traditional engine
+        doesn't break. The comparison it's judged against moves, and a fixed product can't move
+        with it.</p>
+        <p><b>Current evidence for this claim, dated and cited:</b></p>
+        <ul class="findings">
+          <li>Google DeepMind's <b>Genie 3</b> already generates an explorable 3D world from a
+          text prompt, navigable live, and lets a player inject changes mid-session — add an
+          element, shift the weather, reshape the environment — through the same interface used
+          to move around in it. Publicly demoable since January 2026.</li>
+          <li><b>GameNGen</b> and <b>Oasis</b> go further in a narrower case: both run existing
+          games (DOOM, Minecraft) with no traditional engine underneath — a neural model predicts
+          every frame directly from player input, frame by frame.</li>
+          <li>On the NPC side, <b>Inworld AI</b> and <b>NVIDIA ACE</b> are shipping LLM-driven
+          characters with persistent memory into production Unreal/Unity pipelines today, and a
+          2026 industry survey puts NPC-AI adoption at 54% of studios.</li>
+        </ul>
+        <p><b>The honest counter-case, kept in:</b></p>
+        <ul class="findings">
+          <li>World models still can't do what a traditional engine does by design — track what
+          exists. They predict the next frame; they lack a persistent, queryable game state the
+          way a rules-and-physics engine maintains one. Inference carries a per-frame cost a
+          traditional renderer doesn't pay.</li>
+          <li>The dominant informed industry prediction right now is a hybrid: a world-model layer
+          running inside or alongside a conventional engine, still standing, still doing the work
+          only it can do. That's the sharper version of the claim above, and a stronger one: the
+          fixed thing stops being the best use of a given compute budget once live, per-player
+          customization keeps getting cheaper to run — the engine stays, the case for shipping a
+          fixed world on top of it weakens every year.</li>
+        </ul>
+        <figure class="inline-fig wide">
+  <svg viewBox="0 0 680 280" role="img" aria-label="Diagram comparing two mechanisms: a fixed content pipeline where two different players converge on the same pre-authored world, versus a live AI-customized loop where two players diverge into different worlds generated from their own actions feeding back into the model." style="color: var(--ink); width:100%; height:auto; display:block;">
+    <defs>
+      <marker id="gt-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 Z" fill="currentColor"></path>
+      </marker>
+      <marker id="gt-arrow-accent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 Z" fill="var(--accent)"></path>
+      </marker>
+    </defs>
+
+    <!-- left panel: FIXED -->
+    <text x="20" y="20" font-size="11" fill="currentColor" opacity="0.7" letter-spacing="0.06em" font-weight="600">FIXED (TODAY'S AAA MODEL)</text>
+
+    <rect x="70" y="34" width="150" height="40" rx="2" fill="none" stroke="currentColor"></rect>
+    <text x="145" y="58" font-size="11" fill="currentColor" text-anchor="middle">authored once, pre-release</text>
+
+    <line x1="145" y1="74" x2="145" y2="98" stroke="currentColor" stroke-opacity="0.7" marker-end="url(#gt-arrow)"></line>
+
+    <rect x="70" y="100" width="150" height="40" rx="2" fill="none" stroke="currentColor"></rect>
+    <text x="145" y="124" font-size="11" fill="currentColor" text-anchor="middle">compiled into engine</text>
+
+    <line x1="145" y1="140" x2="145" y2="164" stroke="currentColor" stroke-opacity="0.7" marker-end="url(#gt-arrow)"></line>
+
+    <rect x="70" y="166" width="150" height="42" rx="2" fill="none" stroke="currentColor"></rect>
+    <text x="145" y="190" font-size="11" fill="currentColor" text-anchor="middle" font-weight="600">the same world</text>
+    <text x="145" y="203" font-size="9.5" fill="currentColor" text-anchor="middle" opacity="0.7">for every player</text>
+
+    <!-- two players converging into one box -->
+    <text x="30" y="238" font-size="10" fill="currentColor" opacity="0.75">Player A</text>
+    <line x1="30" y1="246" x2="30" y2="256" stroke="currentColor" stroke-opacity="0.5"></line>
+    <line x1="30" y1="256" x2="120" y2="256" stroke="currentColor" stroke-opacity="0.5"></line>
+    <line x1="120" y1="256" x2="120" y2="212" stroke="currentColor" stroke-opacity="0.5" marker-end="url(#gt-arrow)"></line>
+
+    <text x="235" y="238" font-size="10" fill="currentColor" opacity="0.75" text-anchor="end">Player B</text>
+    <line x1="235" y1="246" x2="235" y2="256" stroke="currentColor" stroke-opacity="0.5"></line>
+    <line x1="235" y1="256" x2="170" y2="256" stroke="currentColor" stroke-opacity="0.5"></line>
+    <line x1="170" y1="256" x2="170" y2="212" stroke="currentColor" stroke-opacity="0.5" marker-end="url(#gt-arrow)"></line>
+
+    <!-- divider -->
+    <line x1="330" y1="10" x2="330" y2="270" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="3 3"></line>
+
+    <!-- right panel: LIVE -->
+    <text x="360" y="20" font-size="11" fill="var(--accent)" opacity="0.9" letter-spacing="0.06em" font-weight="600">LIVE (AI-CUSTOMIZED)</text>
+
+    <rect x="360" y="34" width="130" height="40" rx="2" fill="none" stroke="currentColor"></rect>
+    <text x="425" y="58" font-size="11" fill="currentColor" text-anchor="middle">player action</text>
+
+    <line x1="425" y1="74" x2="425" y2="98" stroke="currentColor" stroke-opacity="0.7" marker-end="url(#gt-arrow)"></line>
+
+    <rect x="360" y="100" width="130" height="42" rx="2" fill="var(--accent)" stroke="var(--accent)"></rect>
+    <text x="425" y="118" font-size="11" fill="var(--accent-ink)" text-anchor="middle" font-weight="600">AI world / NPC</text>
+    <text x="425" y="131" font-size="10" fill="var(--accent-ink)" text-anchor="middle" opacity="0.9">model</text>
+
+    <!-- self-loop glyph: this box's own output feeds its own next input -->
+    <path d="M 490 108 C 518 108, 518 134, 494 134 C 484 134, 476 130, 473 124" fill="none" stroke="var(--accent)" stroke-width="1.3" marker-end="url(#gt-arrow-accent)"></path>
+    <text x="524" y="115" font-size="9" fill="var(--accent)">feeds back</text>
+    <text x="524" y="126" font-size="9" fill="var(--accent)">per player</text>
+
+    <!-- diverging to two different worlds -->
+    <line x1="400" y1="142" x2="330" y2="180" stroke="currentColor" stroke-opacity="0.7" marker-end="url(#gt-arrow)"></line>
+    <line x1="450" y1="142" x2="530" y2="180" stroke="currentColor" stroke-opacity="0.7" marker-end="url(#gt-arrow)"></line>
+
+    <rect x="270" y="182" width="130" height="42" rx="2" fill="none" stroke="currentColor"></rect>
+    <text x="335" y="200" font-size="10.5" fill="currentColor" text-anchor="middle" font-weight="600">Player A's world</text>
+    <text x="335" y="213" font-size="9.5" fill="currentColor" text-anchor="middle" opacity="0.7">shaped by A's history</text>
+
+    <rect x="480" y="182" width="130" height="42" rx="2" fill="none" stroke="currentColor"></rect>
+    <text x="545" y="200" font-size="10.5" fill="currentColor" text-anchor="middle" font-weight="600">Player B's world</text>
+    <text x="545" y="213" font-size="9.5" fill="currentColor" text-anchor="middle" opacity="0.7">shaped by B's history</text>
+  </svg>
+  <div class="cap">The structural difference: a fixed pipeline converges every player onto the same shipped world. A live model diverges by design — each player's action feeds back into what generates next, so two players' worlds drift apart from the same starting point.</div>
+</figure>
+        <p><b>Two systems already built, offered here as evidence:</b></p>
+        <ul class="findings">
+          <li><a href="#gladiator">gladiator-arena</a>'s combat AI already demonstrates the
+          NPC-feedback half of this: unit personality traits (aggression, cunning, bravery) drive
+          behavior and outcomes, verified directly against thousands of archived matches.</li>
+          <li>The <a href="#wargaming">AI wargaming doctrine project</a> goes further — a named
+          subordinate officer's established personality actively predicts and constrains what
+          they'll do across sessions, and the same design survives a full genre swap, from a
+          D&amp;D-style campaign to BattleTech's Zellbrigen mechanic, with no shared code between
+          the two rule systems. Most public writing on this topic argues from what might happen.
+          These are working systems already showing a piece of it happening.</li>
+        </ul>
+        <div class="links">
+          <a href="https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/">deepmind.google — Genie 3</a>
+          <a href="https://arxiv.org/abs/2408.14837">arxiv.org — GameNGen (2408.14837)</a>
         </div>
       </div>
     </section>
