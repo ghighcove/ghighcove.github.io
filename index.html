@@ -701,11 +701,18 @@
   </svg>
   <div class="cap">The structural difference: a fixed pipeline converges every player onto the same shipped world. A live model diverges by design — each player's action feeds back into what generates next, so two players' worlds drift apart from the same starting point.</div>
 </figure>
-        <p><b>Two systems already built, offered here as evidence:</b></p>
+        <p><b>Three systems already built, offered here as evidence:</b></p>
         <ul class="findings">
-          <li><a href="#gladiator">gladiator-arena</a>'s combat AI already demonstrates the
-          NPC-feedback half of this: unit personality traits (aggression, cunning, bravery) drive
-          behavior and outcomes, verified directly against thousands of archived matches.</li>
+          <li><b>playset</b>, open-sourced the same night as this piece, is the most direct
+          evidence of the mechanism above, running: a small three.js renderer plus a versioned
+          JSON contract where a deterministic engine owns all state and an AI only narrates on top
+          of it — never touching the scene. Played a D&amp;D encounter through it live, round by
+          round, watching the 3D board update itself as the story went — a demonstration of the
+          buildable "hybrid" version of this thesis, the trajectory the honest counter-case above
+          already predicts.</li>
+          <li><a href="#gladiator">gladiator-arena</a>'s combat AI demonstrates the NPC-feedback
+          half of this: unit personality traits (aggression, cunning, bravery) drive behavior and
+          outcomes, verified directly against thousands of archived matches.</li>
           <li>The <a href="#wargaming">AI wargaming doctrine project</a> goes further — a named
           subordinate officer's established personality actively predicts and constrains what
           they'll do across sessions, and the same design survives a full genre swap, from a
@@ -714,6 +721,7 @@
           These are working systems already showing a piece of it happening.</li>
         </ul>
         <div class="links">
+          <a href="https://github.com/ghighcove/playset">github.com — playset (open source)</a>
           <a href="https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/">deepmind.google — Genie 3</a>
           <a href="https://arxiv.org/abs/2408.14837">arxiv.org — GameNGen (2408.14837)</a>
         </div>
