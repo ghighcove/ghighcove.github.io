@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Glenn Highcove — AI Projects</title>
 <style>
   :root {
@@ -310,8 +311,8 @@
       <p><b>Each system was checked against a published result before it shipped:</b></p>
       <ul class="findings">
         <li>Elevator round-trip times reproduce the published worked examples (Barney &amp; Peters;
-        BS 5655-6) digit for digit. A known misprint in one of them serves as a test the code
-        must fail. The event-driven simulation lands within 0.4–0.6 % of the formula at
+        BS 5655-6) digit for digit, and a known misprint in one of them is kept as a negative
+        control the code is expected to disagree with. The event-driven simulation lands within 0.4–0.6 % of the formula at
         saturation across 30 seeds.</li>
         <li>The heat balance for each floor matches ETH Zürich's independently built
         RC_BuildingSimulator to one part in a million. Elevator motor power matches PNNL's
@@ -338,6 +339,10 @@
         $0.7–1.5M with the same waits. Whether halving the morning wait is worth $4.6–7.0M is
         a question the model states it can't answer, because rent in it doesn't depend on
         service.</li>
+        <li>Against PNNL's published annual results for its prototype large office, lighting,
+        plug, elevator and cooling energy land within 25–30 %. Supply and return fans aren't
+        modelled yet; at the prototype's rate they'd add about 26 % to the electricity and move
+        the value by under 0.5 %.</li>
       </ul>
       <p>Two of the project's own early conclusions were wrong and are corrected in its
       changelog, struck through next to the originals: a water-pumping "finding" read the
